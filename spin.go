@@ -9,6 +9,8 @@ import (
 
 var spin = []string{ "/", "-", "\\", "|" }
 
+const delay = 100 // Delay in milliseconds
+
 func main() {
 	// Make sure a newline is printed even on SIGINT
 	c := make(chan os.Signal, 1)
@@ -26,7 +28,7 @@ func main() {
 
 		fmt.Print(spin[i])
 		fmt.Print("\r")
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(delay * time.Millisecond)
 	}
 
 	cleanup()
