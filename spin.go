@@ -17,7 +17,7 @@ func main() {
 	signal.Notify(c, os.Interrupt)
 
 	go func() {
-		<- c
+		<-c
 		cleanup()
 	}()
 
