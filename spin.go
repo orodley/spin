@@ -8,12 +8,12 @@ import (
 	"time"
 )
 
-var spin = []string{ "/", "-", "\\", "|" }
-
-var delay int // Delay in milliseconds
+var spin  string
+var delay int
 
 func init() {
 	flag.IntVar(&delay, "d", 100, "delay between `frames' in milliseconds")
+	flag.StringVar(&spin, "s", "/-\\|", "animation to play")
 
 	flag.Parse()
 }
@@ -33,7 +33,7 @@ func main() {
 			i = 0
 		}
 
-		fmt.Print(spin[i])
+		fmt.Print(string(spin[i]))
 		fmt.Print("\r")
 		time.Sleep(time.Duration(delay) * time.Millisecond)
 	}
