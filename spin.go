@@ -15,11 +15,14 @@ var delay   int
 var newline bool
 
 func init() {
-	flag.IntVar(&delay, "d", 100, "delay between `frames' in milliseconds")
-	flag.StringVar(&spin, "s", "/-\\|", "animation to play")
-	flag.StringVar(&format, "f", "%s",
+	flag.IntVar(   &delay,   "d", 100,
+		"delay between `frames' in milliseconds")
+	flag.StringVar(&spin,    "s", "/-\\|",
+		"animation to play")
+	flag.StringVar(&format,  "f", "%s",
 		"format string for the animation. %s is replaced by each frame")
-	flag.BoolVar(&newline, "n", false, "print a newline instead of a return")
+	flag.BoolVar(  &newline, "n", false,
+		"print a newline instead of a return")
 
 	flag.Parse()
 }
