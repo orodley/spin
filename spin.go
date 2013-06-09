@@ -29,7 +29,9 @@ func main() {
 
 	go func() {
 		<-c
-		cleanup()
+
+		fmt.Println()
+		os.Exit(0)
 	}()
 
 	for i := 0;; i++ {
@@ -41,11 +43,4 @@ func main() {
 		fmt.Print("\r")
 		time.Sleep(time.Duration(delay) * time.Millisecond)
 	}
-
-	cleanup()
-}
-
-func cleanup() {
-	fmt.Println()
-	os.Exit(0)
 }
