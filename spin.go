@@ -5,15 +5,19 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"strings"
 	"time"
 )
 
-var spin  string
-var delay int
+var spin   string
+var format string
+var delay  int
 
 func init() {
 	flag.IntVar(&delay, "d", 100, "delay between `frames' in milliseconds")
 	flag.StringVar(&spin, "s", "/-\\|", "animation to play")
+	flag.StringVar(&format, "f", "%s",
+		"format string for the animation. %s is replaced by each frame")
 
 	flag.Parse()
 }
@@ -33,7 +37,7 @@ func main() {
 			i = 0
 		}
 
-		fmt.Print(string(spin[i]))
+		fmt.Print(strings.Replace(format, "%s", string(spin[i]), -1))
 		fmt.Print("\r")
 		time.Sleep(time.Duration(delay) * time.Millisecond)
 	}
