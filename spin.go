@@ -1,15 +1,22 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"time"
 	"os"
 	"os/signal"
+	"time"
 )
 
 var spin = []string{ "/", "-", "\\", "|" }
 
-const delay = 100 // Delay in milliseconds
+var delay int // Delay in milliseconds
+
+func init() {
+	flag.IntVar(&delay, "d", 100, "delay between `frames' in milliseconds")
+
+	flag.Parse()
+}
 
 func main() {
 	// Make sure a newline is printed even on SIGINT
@@ -28,7 +35,7 @@ func main() {
 
 		fmt.Print(spin[i])
 		fmt.Print("\r")
-		time.Sleep(delay * time.Millisecond)
+		time.Sleep(time.Duration(delay) * time.Millisecond)
 	}
 
 	cleanup()
