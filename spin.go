@@ -9,15 +9,17 @@ import (
 	"time"
 )
 
-var spin   string
-var format string
-var delay  int
+var spin    string
+var format  string
+var delay   int
+var newline bool
 
 func init() {
 	flag.IntVar(&delay, "d", 100, "delay between `frames' in milliseconds")
 	flag.StringVar(&spin, "s", "/-\\|", "animation to play")
 	flag.StringVar(&format, "f", "%s",
 		"format string for the animation. %s is replaced by each frame")
+	flag.BoolVar(&newline, "n", false, "print a newline instead of a return")
 
 	flag.Parse()
 }
@@ -40,7 +42,11 @@ func main() {
 		}
 
 		fmt.Print(strings.Replace(format, "%s", string(spin[i]), -1))
-		fmt.Print("\r")
+		if (newline) {
+			fmt.Print("\n")
+		} else {
+			fmt.Print("\r")
+		}
 		time.Sleep(time.Duration(delay) * time.Millisecond)
 	}
 }
